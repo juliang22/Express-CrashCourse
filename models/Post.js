@@ -1,6 +1,6 @@
 const { model, Schema } = require('mongoose')
 
-// The 'user' bit at the end - type referes to another schema object, ref is passed the table/collections of useres => this allows us to later use mongoose to automatically populate the user field using some mongoose methods
+// The 'user' bit at the end - type refers to another schema object, ref is passed the table/collections of users => this allows us to later use mongoose to automatically populate the user field using some mongoose methods
 const postSchema = new Schema({
 	body: String,
 	username: String,

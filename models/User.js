@@ -5,7 +5,7 @@ const { model, Schema } = require('mongoose')
 //Can specify that the return values are required by adding '!' to the end, but we are going to handle that in the Graphql layer
 const userSchema = new Schema({
 	username: String,
-	passowrd: String,
+	password: String,
 	email: String,
 	createdAt: String
 })
