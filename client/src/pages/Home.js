@@ -27,7 +27,7 @@ export default function Home() {
 						<Transition.Group>
 							{data.getPosts &&
 								data.getPosts.map((post) => (
-									<Grid.Column key={data.getPosts.id} style={{ marginBottom: 20 }}>
+									<Grid.Column key={post.id} style={{ marginBottom: 20 }}>
 										<PostCard post={post} />
 									</Grid.Column>
 								))}

@@ -7,6 +7,7 @@ import moment from 'moment'
 import { AuthContext } from '../context/auth'
 import LikeButton from '../components/LikeButton'
 import DeleteButton from '../components/DeleteButton'
+import MyPopup from '../util/MyPopup'
 
 export default function SinglePost(props) {
 	const postId = props.match.params.postId // getting url params of that post
@@ -59,17 +60,21 @@ export default function SinglePost(props) {
 							<hr />
 							<Card.Content extra>
 								<LikeButton user={user} post={{ id, likeCount, likes }} />
-								<Button
-									as="div"
-									labelPosition="right"
-									onClick={() => console.log("commented on post")} >
-									<Button basic color="blue">
-										<Icon name="comments" />
-										<Label basic color="blue" pointing="left">
-											{commentCount}
-										</Label>
+								<MyPopup
+									content="Comment on post"
+								>
+									<Button
+										as="div"
+										labelPosition="right"
+										onClick={() => console.log("commented on post")} >
+										<Button basic color="blue">
+											<Icon name="comments" />
+											<Label basic color="blue" pointing="left">
+												{commentCount}
+											</Label>
+										</Button>
 									</Button>
-								</Button>
+								</MyPopup>
 								{user && user.username === username && (
 									<DeleteButton postId={id} callback={deletePostCallback} />
 								)}
@@ -91,7 +96,7 @@ export default function SinglePost(props) {
 											/>
 											<button type="submit"
 												className="ui button teal"
-												disable={comment.trim() === ''}
+												disable={comment.trim() === '' ? "true" : "false"}
 												onClick={submitComment}
 											>
 												Submit
@@ -105,7 +110,7 @@ export default function SinglePost(props) {
 							<Card fluid key={CommentMetadata.id}>
 								<Card.Content>
 									{user && user.username === comment.username && (
-										<DeleteButton postId={id} commentId={comment.id} />
+										<DeleteButton postId={id} commentId={comment.id} key={comment.id} />
 									)}
 									<Card.Header>{comment.username}</Card.Header>
 									<Card.Meta>{moment(comment.createdAt).fromNow()}</Card.Meta>
